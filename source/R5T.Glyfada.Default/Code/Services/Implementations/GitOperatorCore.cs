@@ -38,7 +38,11 @@ namespace R5T.Glyfada.Default
 
             if(result.AnyError)
             {
-                throw new Exception($"Execution failed. Command:\n{command}");
+                throw new Exception($"Execution failed.\nError: {result.GetErrorText()}\nCommand:\n{command}");
+            }
+            else
+            {
+                Console.WriteLine(result.GetOutputText());
             }
         }
     }
