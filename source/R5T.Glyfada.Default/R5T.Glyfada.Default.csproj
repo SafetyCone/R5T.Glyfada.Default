@@ -4,4 +4,11 @@
     <GenerateDocumentationFile>true</GenerateDocumentationFile>
     <NoWarn>1701;1702;1591;1573</NoWarn>
   </PropertyGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\..\..\R5T.Caledonia.Base\source\R5T.Caledonia.Base\R5T.Caledonia.Base.csproj" />
+    <ProjectReference Include="..\..\..\R5T.Glyfada.Base\source\R5T.Glyfada.Base\R5T.Glyfada.Base.csproj" />
+    <ProjectReference Include="..\..\..\R5T.Glyfada.Commands\source\R5T.Glyfada.Commands\R5T.Glyfada.Commands.csproj" />
+    <ProjectReference Include="..\..\..\R5T.Nikaia.Base\source\R5T.Nikaia.Base\R5T.Nikaia.Base.csproj" />
+    <ProjectReference Include="..\..\..\R5T.Volos\source\R5T.Volos\R5T.Volos.csproj" />
+  </ItemGroup>
 </Project>
