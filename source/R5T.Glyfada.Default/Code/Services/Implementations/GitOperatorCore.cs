@@ -20,6 +20,25 @@ namespace R5T.Glyfada.Default
             this.GitExecutableFilePathProvider = gitExecutableFilePathProvider;
         }
 
+        private void Execute(string arguments)
+        {
+            var gitExecutableFilePath = this.GitExecutableFilePathProvider.GetGitExecutableFilePath();
+
+            var invocation = CommandLineInvocation.New(gitExecutableFilePath, arguments);
+
+            var result = this.CommandLineInvocationOperator.Run(invocation);
+
+            if (result.ExitCode != 0)
+            {
+                throw new Exception($"Execution failed. Error:\n{result.GetErrorText()}\nOutput:\n{result.GetOutputText()}\nArguments:\n{arguments}");
+            }
+            else
+            {
+                Console.WriteLine(result.GetOutputText());
+                Console.WriteLine(result.GetErrorText());
+            }
+        }
+
         public void Init(string directoryPath, bool quiet = false)
         {
             var command = GitCommandLine.New().Init()
@@ -30,20 +49,18 @@ namespace R5T.Glyfada.Default
                 })
                 .BuildCommand();
 
-            var gitExecutableFilePath = this.GitExecutableFilePathProvider.GetGitExecutableFilePath();
+            this.Execute(command);
+        }
 
-            var invocation = CommandLineInvocation.New(gitExecutableFilePath, command);
+        public void Clone(string repositoryURL, string localDiretoryPath)
+        {
+            var command = GitCommandLine.New().Clone()
+                .SetRepository(repositoryURL)
+                .SetDirectory(localDiretoryPath)
+                .SetProgress()
+                .BuildCommand();
 
-            var result = this.CommandLineInvocationOperator.Run(invocation);
-
-            if(result.AnyError)
-            {
-                throw new Exception($"Execution failed.\nError: {result.GetErrorText()}\nCommand:\n{command}");
-            }
-            else
-            {
-                Console.WriteLine(result.GetOutputText());
-            }
+            this.Execute(command);
         }
     }
 }
