@@ -10,10 +10,19 @@ namespace R5T.Glyfada.Default
 {
     public static class GitCommandLine
     {
-        public static ICommandBuilderContext<GitContext> New()
+        public static ICommandBuilderContext<GitContext> Start()
         {
-            var commandBuilderContext = CommandLine.New<GitContext>();
+            var commandBuilderContext = CommandLine.Start<GitContext>();
             return commandBuilderContext;
+        }
+
+        public static ICommandBuilderContext<GitContext> Start(string directoryPath)
+        {
+            var gitContext = GitCommandLine.Start()
+                .SetCurrentDirectory(directoryPath)
+                ;
+
+            return gitContext;
         }
     }
 }
