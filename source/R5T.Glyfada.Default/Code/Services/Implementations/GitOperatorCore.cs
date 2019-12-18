@@ -2,6 +2,8 @@
 
 using R5T.Caledonia;
 using R5T.Heraklion;
+using R5T.Heraklion.Default;
+using R5T.Heraklion.Extensions;
 using R5T.Nikaia;
 
 using R5T.Glyfada.Commands;
@@ -20,45 +22,63 @@ namespace R5T.Glyfada.Default
             this.GitExecutableFilePathProvider = gitExecutableFilePathProvider;
         }
 
-        private void Execute(string arguments)
+        private void Execute(ICommandBuilderContext command)
         {
             var gitExecutableFilePath = this.GitExecutableFilePathProvider.GetGitExecutableFilePath();
 
-            var invocation = CommandLineInvocation.New(gitExecutableFilePath, arguments);
-
-            var result = this.CommandLineInvocationOperator.Run(invocation);
-
-            if (result.ExitCode != 0)
-            {
-                throw new Exception($"Execution failed. Error:\n{result.GetErrorText()}\nOutput:\n{result.GetOutputText()}\nArguments:\n{arguments}");
-            }
-            else
-            {
-                Console.WriteLine(result.GetOutputText());
-                Console.WriteLine(result.GetErrorText());
-            }
+            this.CommandLineInvocationOperator.Execute(gitExecutableFilePath, command);
         }
 
-        public void Init(string directoryPath, bool quiet = false)
+        public void Add(string localPath)
         {
-            var command = GitCommandLine.New().Init()
-                .SetDirectory(directoryPath)
-                .Condition(quiet, (context) =>
-                {
-                    context.SetQuiet();
-                })
-                .BuildCommand();
+            var command = GitCommandLine.Start(localPath)
+                .Add(localPath)
+                ;
 
             this.Execute(command);
         }
 
         public void Clone(string repositoryURL, string localDiretoryPath)
         {
-            var command = GitCommandLine.New().Clone()
+            var command = GitCommandLine.Start(localDiretoryPath)
+                .Clone()
                 .SetRepository(repositoryURL)
                 .SetDirectory(localDiretoryPath)
                 .SetProgress()
-                .BuildCommand();
+                ;
+
+            this.Execute(command);
+        }
+
+        public void Commit(string localPath, string message)
+        {
+            var command = GitCommandLine.Start(localPath)
+                .Commit()
+                .SetMessage(message)
+                ;
+
+            this.Execute(command);
+        }
+
+        public void Init(string directoryPath, bool quiet = false)
+        {
+            var command = GitCommandLine.Start(directoryPath)
+                .Init()
+                .SetDirectory(directoryPath)
+                .Condition(quiet, (context) =>
+                {
+                    context.SetQuiet();
+                })
+                ;
+
+            this.Execute(command);
+        }
+
+        public void Push(string directoryPath)
+        {
+            var command = GitCommandLine.Start(directoryPath)
+                .Push()
+                ;
 
             this.Execute(command);
         }
