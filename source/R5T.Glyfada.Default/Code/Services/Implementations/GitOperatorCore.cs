@@ -4,6 +4,7 @@ using R5T.Caledonia;
 using R5T.Heraklion;
 using R5T.Heraklion.Default;
 using R5T.Heraklion.Extensions;
+using R5T.Magyar.IO;
 using R5T.Nikaia;
 
 using R5T.Glyfada.Commands;
@@ -29,30 +30,32 @@ namespace R5T.Glyfada.Default
             this.CommandLineInvocationOperator.Execute(gitExecutableFilePath, command);
         }
 
-        public void Add(string localPath)
+        public void Add(string path)
         {
-            var command = GitCommandLine.Start(localPath)
-                .Add(localPath)
+            var command = GitCommandLine.Start(path)
+                .Add(path)
                 ;
 
             this.Execute(command);
         }
 
-        public void Clone(string repositoryURL, string localDiretoryPath)
+        public void Clone(string repositoryURL, string localDirectoryPath)
         {
-            var command = GitCommandLine.Start(localDiretoryPath)
+            DirectoryHelper.CreateDirectoryOkIfExists(localDirectoryPath);
+
+            var command = GitCommandLine.Start(localDirectoryPath)
                 .Clone()
                 .SetRepository(repositoryURL)
-                .SetDirectory(localDiretoryPath)
-                .SetProgress()
+                .SetDirectory(localDirectoryPath)
+                //.SetProgress()
                 ;
 
             this.Execute(command);
         }
 
-        public void Commit(string localPath, string message)
+        public void Commit(string path, string message)
         {
-            var command = GitCommandLine.Start(localPath)
+            var command = GitCommandLine.Start(path)
                 .Commit()
                 .SetMessage(message)
                 ;
@@ -74,10 +77,29 @@ namespace R5T.Glyfada.Default
             this.Execute(command);
         }
 
-        public void Push(string directoryPath)
+        public void Push(string path)
         {
-            var command = GitCommandLine.Start(directoryPath)
+            var command = GitCommandLine.Start(path)
                 .Push()
+                ;
+
+            this.Execute(command);
+        }
+
+        public bool IsUnderSourceControl(string path)
+        {
+            throw new NotImplementedException();
+        }
+
+        public void Pull(string path)
+        {
+            // TODO: use an IFileSystemOperator when available.
+            var isDirectory = DirectoryHelper.IsDirectory(path);
+
+            var gitCurrentDirectoryPath = isDirectory ? path : FileHelper.GetParentDirectoryPath(path);
+
+            var command = GitCommandLine.Start(gitCurrentDirectoryPath)
+                .Pull()
                 ;
 
             this.Execute(command);
