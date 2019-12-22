@@ -50,7 +50,7 @@ namespace R5T.Glyfada.Default
         {
             var gitExecutableFilePath = this.GitExecutableFilePathProvider.GetGitExecutableFilePath();
 
-            var output = this.CommandLineInvocationOperator.ExecuteString(gitExecutableFilePath, command);
+            var output = this.CommandLineInvocationOperator.ExecuteAndGetOutput(gitExecutableFilePath, command);
             return output;
         }
 
