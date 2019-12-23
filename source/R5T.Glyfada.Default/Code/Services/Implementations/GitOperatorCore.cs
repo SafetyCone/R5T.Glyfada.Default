@@ -137,7 +137,7 @@ namespace R5T.Glyfada.Default
 
             var output = this.ExecuteString(command);
 
-            var remoteRepositoryUrl = output.Output;
+            var remoteRepositoryUrl = output.Output.Trim();
             return remoteRepositoryUrl;
         }
     }
