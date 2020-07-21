@@ -13,7 +13,7 @@ using R5T.Glyfada.Commands;
 
 namespace R5T.Glyfada.Default
 {
-    public class GitOperatorCore : IGitOperatorCore
+    public class GitOperator : IGitOperator
     {
         #region Static
 
@@ -33,7 +33,7 @@ namespace R5T.Glyfada.Default
         private IGitExecutableFilePathProvider GitExecutableFilePathProvider { get; }
 
 
-        public GitOperatorCore(ICommandLineInvocationOperator commandLineInvocationOperator, IGitExecutableFilePathProvider gitExecutableFilePathProvider)
+        public GitOperator(ICommandLineInvocationOperator commandLineInvocationOperator, IGitExecutableFilePathProvider gitExecutableFilePathProvider)
         {
             this.CommandLineInvocationOperator = commandLineInvocationOperator;
             this.GitExecutableFilePathProvider = gitExecutableFilePathProvider;
@@ -117,7 +117,7 @@ namespace R5T.Glyfada.Default
 
         public void Pull(string path)
         {
-            var gitCurrentDirectoryPath = GitOperatorCore.GetGitCurrentDirectoryPath(path);
+            var gitCurrentDirectoryPath = GitOperator.GetGitCurrentDirectoryPath(path);
 
             var command = GitCommandLine.Start(gitCurrentDirectoryPath)
                 .Pull()
@@ -128,7 +128,7 @@ namespace R5T.Glyfada.Default
 
         public string GetRemoteRepositoryUrl(string path, string remoteRepositoryAlias = Constants.OriginDefaultRemoteRepositoryAlias)
         {
-            var gitCurrentDirectoryPath = GitOperatorCore.GetGitCurrentDirectoryPath(path);
+            var gitCurrentDirectoryPath = GitOperator.GetGitCurrentDirectoryPath(path);
 
             var command = GitCommandLine.Start(gitCurrentDirectoryPath)
                 .Config()
