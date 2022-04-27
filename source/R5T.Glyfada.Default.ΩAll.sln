@@ -9,6 +9,10 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "R5T.Glyfada.Default.Constru
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "R5T.Glyfada.Default.Testing", "R5T.Glyfada.Default.Testing\R5T.Glyfada.Default.Testing.csproj", "{44CD4AC4-1E67-4E25-8130-8D3094E78479}"
 EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "_Dependencies", "_Dependencies", "{F15D96FD-343F-4B9D-9F17-65C4E99760E6}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "R5T.T0064", "..\..\R5T.T0064\source\R5T.T0064\R5T.T0064.csproj", "{B6E262CA-33B8-4DC2-98CD-A0719ACC6F9A}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -58,5 +62,20 @@ Global
 		{44CD4AC4-1E67-4E25-8130-8D3094E78479}.Release|x64.Build.0 = Release|Any CPU
 		{44CD4AC4-1E67-4E25-8130-8D3094E78479}.Release|x86.ActiveCfg = Release|Any CPU
 		{44CD4AC4-1E67-4E25-8130-8D3094E78479}.Release|x86.Build.0 = Release|Any CPU
+		{B6E262CA-33B8-4DC2-98CD-A0719ACC6F9A}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{B6E262CA-33B8-4DC2-98CD-A0719ACC6F9A}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{B6E262CA-33B8-4DC2-98CD-A0719ACC6F9A}.Debug|x64.ActiveCfg = Debug|Any CPU
+		{B6E262CA-33B8-4DC2-98CD-A0719ACC6F9A}.Debug|x64.Build.0 = Debug|Any CPU
+		{B6E262CA-33B8-4DC2-98CD-A0719ACC6F9A}.Debug|x86.ActiveCfg = Debug|Any CPU
+		{B6E262CA-33B8-4DC2-98CD-A0719ACC6F9A}.Debug|x86.Build.0 = Debug|Any CPU
+		{B6E262CA-33B8-4DC2-98CD-A0719ACC6F9A}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{B6E262CA-33B8-4DC2-98CD-A0719ACC6F9A}.Release|Any CPU.Build.0 = Release|Any CPU
+		{B6E262CA-33B8-4DC2-98CD-A0719ACC6F9A}.Release|x64.ActiveCfg = Release|Any CPU
+		{B6E262CA-33B8-4DC2-98CD-A0719ACC6F9A}.Release|x64.Build.0 = Release|Any CPU
+		{B6E262CA-33B8-4DC2-98CD-A0719ACC6F9A}.Release|x86.ActiveCfg = Release|Any CPU
+		{B6E262CA-33B8-4DC2-98CD-A0719ACC6F9A}.Release|x86.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(NestedProjects) = preSolution
+		{B6E262CA-33B8-4DC2-98CD-A0719ACC6F9A} = {F15D96FD-343F-4B9D-9F17-65C4E99760E6}
 	EndGlobalSection
 EndGlobal

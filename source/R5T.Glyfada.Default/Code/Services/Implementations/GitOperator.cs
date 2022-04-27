@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using System.IO;
 
 using R5T.Caledonia;
@@ -8,12 +8,12 @@ using R5T.Heraklion.Extensions;
 using R5T.Nikaia;
 
 using R5T.Glyfada.Base;
-using R5T.Glyfada.Commands;
+using R5T.Glyfada.Commands;using R5T.T0064;
 
 
 namespace R5T.Glyfada.Default
-{
-    public class GitOperator : IGitOperator
+{[ServiceImplementationMarker]
+    public class GitOperator : IGitOperator,IServiceImplementation
     {
         #region Static
 
