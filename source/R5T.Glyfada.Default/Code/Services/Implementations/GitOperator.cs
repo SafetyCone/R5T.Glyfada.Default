@@ -87,6 +87,17 @@ namespace R5T.Glyfada.Default
             this.Execute(command);
         }
 
+        public void Fetch(string path)
+        {
+            var gitCurrentDirectoryPath = GitOperator.GetGitCurrentDirectoryPath(path);
+
+            var command = GitCommandLine.Start(gitCurrentDirectoryPath)
+                .Fetch()
+                ;
+
+            this.Execute(command);
+        }
+
         public void Init(string directoryPath, bool quiet = false)
         {
             var command = GitCommandLine.Start(directoryPath)
