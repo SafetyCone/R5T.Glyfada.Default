@@ -1,4 +1,4 @@
-<Project Sdk="Microsoft.NET.Sdk">
+﻿<Project Sdk="Microsoft.NET.Sdk">
   <ItemGroup>
     <ProjectReference Include="..\..\..\R5T.Derby\source\R5T.Derby\R5T.Derby.csproj" />
     <ProjectReference Include="..\..\..\R5T.Glyfada.Standard\source\R5T.Glyfada.Standard\R5T.Glyfada.Standard.csproj" />
